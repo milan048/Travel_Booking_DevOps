@@ -25,18 +25,18 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                bat 'kubectl apply -f k8s/namespace.yaml'
-                bat 'kubectl apply -f k8s/configmap.yaml'
-                bat 'kubectl apply -f k8s/secret.yaml'
-                bat 'kubectl apply -f k8s/deployment.yaml'
-                bat 'kubectl apply -f k8s/service.yaml'
-                bat 'kubectl -n %NAMESPACE% rollout status deployment/travel-booking --timeout=180s'
+                bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s\\namespace.yaml'
+                bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s\\configmap.yaml'
+                bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s\\secret.yaml'
+                bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s\\deployment.yaml'
+                bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s\\service.yaml'
             }
         }
         stage('Monitoring') {
             steps {
-                bat 'kubectl -n %NAMESPACE% get pods'
-                bat 'kubectl -n %NAMESPACE% get svc'
+                 bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" -n %NAMESPACE% get pods -o wide'
+                 bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" -n %NAMESPACE% get svc'
+                 bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" -n %NAMESPACE% get deployments'
             }
         }
     }
