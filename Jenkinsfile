@@ -19,7 +19,9 @@ pipeline {
             steps { bat 'docker build -t %IMAGE% .' }
         }
         stage('Security Scan') {
-            steps { bat 'trivy image --severity HIGH,CRITICAL --ignore-unfixed %IMAGE%' }
+            steps {        
+                 bat '"C:\\Users\\Milan Chauhan\\AppData\\Local\\Microsoft\\WinGet\\Links\\trivy.exe" image --severity HIGH,CRITICAL --ignore-unfixed travel-booking-system:latest'
+            }
         }
         stage('Deploy to Kubernetes') {
             steps {
