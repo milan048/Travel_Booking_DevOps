@@ -12,8 +12,7 @@ pipeline {
         }
         stage('Automated Tests') {
             steps {
-                bat 'python -m pip install -r requirements.txt'
-                bat 'pytest -q'
+                bat 'docker run --rm -v "%CD%:/app" -w /app python:3.12-slim sh -c "pip install --no-cache-dir -r requirements.txt && pytest"'
             }
         }
         stage('Build Docker Image') {
