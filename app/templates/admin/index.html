@@ -1,0 +1,17 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/index.css') }}">
+    <div class="container">
+        <h1>Welcome to the Admin Panel</h1>
+        <div class="mt-4">
+            <!-- Back to Website Button -->
+            <a href="{{ url_for('routes.home') }}" class="btn btn-primary">Back to Website</a>
+            
+            <!-- Logout Button -->
+            <a href="{{ url_for('routes.admin_logout') }}" class="btn btn-danger">Logout</a>
+        </div>
+        <hr>
+        {{ super() }}  {# This renders the default admin index content #}
+    </div>
+{% endblock %}

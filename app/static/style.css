@@ -1,0 +1,93 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+}
+
+/* Header Section */
+.bg-green {
+    background-color: #28a745;  /* Green theme color */
+}
+
+
+.text-white a {
+    color: white;
+    text-decoration: none;
+}
+
+.text-white a:hover {
+    color: #d4d4d4;
+    text-decoration: underline;
+}
+
+/* Navbar */
+.navbar-nav .nav-link {
+    color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #d4d4d4 !important;
+}
+
+/* Get Started Button */
+.btn-green {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.btn-green:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    padding: 20px;
+    color: white;
+}
+
+footer p, footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: #d4d4d4;
+    text-decoration: none;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.my-4 {
+    margin: 2rem 0;
+}
+
+/* Flash Message Styles */
+.flash-message-container {
+    margin-bottom: 2rem; /* Add spacing after flash messages */
+}
+
+.flash-messages {
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+.alert {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Username alignment fix */
+.user-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-left: 10px;  /* Adjust spacing */
+}

@@ -1,0 +1,102 @@
+/* Base styles for the body of the edit profile page */
+.edit-profile-page {
+    background-color: #ffffff; /* White background for the entire page */
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    margin: 0;
+    padding: 0; /* No padding to prevent gray background */
+    height: 100vh; /* Ensure full height */
+    display: flex; /* Flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+/* Container styles */
+.edit-profile-container {
+    background-color: #ffffff; /* White background for the form container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 30px; /* Padding around the form */
+    max-width: 600px; /* Limit the width */
+    width: 100%; /* Full width of the container */
+    box-sizing: border-box; /* Include padding in width calculations */
+    margin-top: 20px; /* Space between the header and the form container */
+    margin-bottom: 20px; /* Space between the form container and footer */
+}
+
+/* Heading styles */
+.edit-profile-container h2 {
+    color: #2c3e50; /* Darker text for contrast */
+    text-align: center; /* Center the heading */
+    margin-bottom: 10px; /* Reduced spacing below the heading */
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 15px; /* Space between form groups, reduced for less gap */
+}
+
+/* Label styles */
+label {
+    font-weight: bold; /* Bold labels for emphasis */
+    margin-bottom: 5px; /* Space below labels */
+    display: block; /* Labels on their own line */
+}
+
+/* Input styles */
+input.form-control {
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners for inputs */
+    padding: 10px; /* Inner padding for inputs */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+/* Input focus styles */
+input.form-control:focus {
+    border-color: #2ecc71; /* Green border on focus */
+    box-shadow: 0 0 5px rgba(46, 204, 113, 0.5); /* Glow effect on focus */
+}
+
+/* Error message styles */
+.text-danger {
+    font-size: 0.9em; /* Smaller font for error messages */
+    color: #e74c3c; /* Red color for error messages */
+}
+
+/* Button styles */
+.btn {
+    width: 100%; /* Full width for buttons */
+    padding: 12px; /* Padding for buttons */
+    border-radius: 5px; /* Rounded corners for buttons */
+    font-weight: bold; /* Bold text for buttons */
+    margin-top: 10px; /* Space above the button */
+}
+
+.btn-primary {
+    background-color: #2ecc71; /* Primary button color (green) */
+    color: #ffffff; /* White text */
+    border: none; /* No border */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.btn-primary:hover {
+    background-color: #27ae60; /* Darker green on hover */
+}
+
+.btn-secondary {
+    background-color: #95a5a6; /* Secondary button color */
+    color: #ffffff; /* White text */
+    border: none; /* No border */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d; /* Darker gray on hover */
+}
+
+/* Ensure no extra margins or paddings cause the gray background */
+html, body {
+    height: 100%; /* Ensure body takes full height */
+    margin: 0; /* Remove default margin */
+    background-color: #ffffff; /* Ensure body background is white */
+}
+

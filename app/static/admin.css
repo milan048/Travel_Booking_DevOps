@@ -1,0 +1,94 @@
+/* General Page Styling */
+body {
+    background-color: #c6ebc1;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.card h2 {
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+/* Form Elements */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #4a4a4a;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    background-color: #003f8f;
+    transform: translateY(0);
+}
+
+/* Flash Message Styling */
+.alert-danger {
+    background-color: #ff4f4f;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 15px rgba(255, 79, 79, 0.2);
+}
+
+/* Container and Form Alignment */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+/* Responsiveness */
+@media (max-width: 576px) {
+    .card {
+        padding: 15px;
+    }
+
+    .btn-primary {
+        padding: 10px;
+        font-size: 16px;
+    }
+}

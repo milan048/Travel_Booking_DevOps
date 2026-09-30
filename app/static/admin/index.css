@@ -1,0 +1,15 @@
+.mt-4 .btn {
+    margin-right: 10px;
+}
+
+/* Custom Logout Button Styling */
+.btn-logout {
+    background-color: #dc3545; /* Bootstrap's red color */
+    border-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-logout:hover {
+    background-color: #c82333; /* Darker red on hover */
+    border-color: #bd2130;
+}

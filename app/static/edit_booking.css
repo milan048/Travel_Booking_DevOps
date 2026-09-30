@@ -1,0 +1,76 @@
+/* Form Container */
+.edit-booking-container { /* Scoped class for the booking form */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    border-radius: 15px; /* More rounded corners */
+    border: 1px solid #ddd; /* Light border color */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Deeper shadow for depth */
+    padding: 40px; /* Increased padding for spaciousness */
+    margin: 20px auto; /* Center the container */
+    max-width: 600px; /* Adjusted width of the container */
+}
+
+/* Heading Styles */
+.edit-booking-container h2 { /* Scoped to the .edit-booking-container */
+    color: #2c3e50; /* Dark heading color */
+    text-align: center; /* Center the heading */
+    margin-bottom: 25px; /* Increased space below the heading */
+    font-size: 2.5rem; /* Larger font size for emphasis */
+}
+
+/* Form Elements */
+.edit-booking-container .form-label { /* Scoped to .edit-booking-container */
+    font-weight: 600; /* Slightly bolder labels */
+    color: #34495e; /* Darker color for labels */
+    margin-bottom: 10px; /* Space below labels */
+}
+
+/* Input Styles */
+.edit-booking-container .form-control { /* Scoped to .edit-booking-container */
+    border-radius: 10px; /* More rounded corners */
+    border: 1px solid #bdc3c7; /* Softer border color */
+    padding: 14px; /* Increased padding for comfort */
+    font-size: 16px; /* Font size for inputs */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus */
+}
+
+.edit-booking-container .form-control:focus { /* Scoped to .edit-booking-container */
+    border-color: #4CAF50; /* Green border on focus */
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Enhanced focus shadow */
+}
+
+/* Button Styles */
+.edit-booking-container .btn-primary { /* Scoped to .edit-booking-container */
+    background-color: #4CAF50; /* Main button color */
+    border: none; /* No border */
+    border-radius: 10px; /* Rounded edges for buttons */
+    padding: 14px; /* Padding for buttons */
+    font-size: 18px; /* Font size for button text */
+    font-weight: bold; /* Bolder button text */
+    width: 100%; /* Full width button */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+}
+
+.edit-booking-container .btn-primary:hover { /* Scoped to .edit-booking-container */
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+}
+
+.edit-booking-container .btn-primary:active { /* Scoped to .edit-booking-container */
+    background-color: #388E3C; /* Even darker on active */
+    transform: translateY(0); /* Reset lift effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .edit-booking-container {
+        padding: 30px; /* Less padding on smaller screens */
+    }
+
+    .edit-booking-container h2 { /* Scoped to .edit-booking-container */
+        font-size: 2rem; /* Smaller heading on smaller screens */
+    }
+
+    .edit-booking-container .btn-primary { /* Scoped to .edit-booking-container */
+        font-size: 16px; /* Smaller button text */
+    }
+}

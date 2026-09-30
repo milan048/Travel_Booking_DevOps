@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Booking - Explore Horizons{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='edit_booking.css') }}">
+<div class="edit-booking-container mt-5"> 
+    <h2>Edit Booking</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}  
+        
+        <div class="mb-3">
+            <label for="destination" class="form-label">Destination</label>
+            <p class="form-control-static">{{ booking.destination }}</p> 
+        </div>
+        
+        
+        <div class="mb-3">
+            <label for="num_people" class="form-label">Number of People</label>
+            <input type="number" class="form-control" name="num_people" value="{{ booking.num_people }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Booking</button>
+    </form>
+</div>
+{% endblock %}

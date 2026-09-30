@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Explore Horizons{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+<div class="home-container">
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center">
+        <div class="container text-center text-white">
+            <h1 class="display-4">Welcome to Your Dream Travel Experience</h1>
+            <p class="lead">Book flights, hotels, and manage all your travel needs with ease.</p>
+            <a href="{{ url_for('routes.search') }}" class="btn btn-primary btn-lg mt-3">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Services</h2>
+            <div class="row">
+                <!-- Flight Booking Feature -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 feature-card text-center shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Flight Booking</h5>
+                            <p class="card-text">Explore our extensive list of flights to your favorite destinations at unbeatable prices.</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            <a href="{{ url_for('routes.search') }}" class="btn btn-outline-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel Booking Feature -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 feature-card text-center shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Hotel Booking</h5>
+                            <p class="card-text">Find the best deals on hotels around the world, tailored to your budget and preferences.</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            <a href="{{ url_for('routes.search') }}" class="btn btn-outline-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Support Feature -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 feature-card text-center shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">24/7 Support</h5>
+                            <p class="card-text">Our dedicated support team is available around the clock to assist you with your bookings.</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            <a href="{{ url_for('routes.contact') }}" class="btn btn-outline-primary">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional: Testimonials Section -->
+    <section class="testimonials-section bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Customers Say</h2>
+            <div class="row">
+                <!-- Testimonial 1 -->
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card p-4 shadow-sm bg-white h-100">
+                        <p class="testimonial-text">"Booking my flights and hotels was a breeze. Excellent prices and great customer service!"</p>
+                        <h5 class="testimonial-author">- Vrajesh patel</h5>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card p-4 shadow-sm bg-white h-100">
+                        <p class="testimonial-text">"I loved the seamless experience. Highly recommend Explore Horizons for all your travel needs."</p>
+                        <h5 class="testimonial-author">- Jay Suthar</h5>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card p-4 shadow-sm bg-white h-100">
+                        <p class="testimonial-text">"24/7 support made my trip planning stress-free. Thank you for the amazing service!"</p>
+                        <h5 class="testimonial-author">- Bhavarth Hapani</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+

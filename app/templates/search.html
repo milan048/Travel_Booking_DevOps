@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}Search Services{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+<div class="container mt-5">
+    {% if not booking_type %}
+        <h2 class="section-title">Choose a Service to Book</h2>
+        <div class="row justify-content-center">
+            <!-- Service Cards -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <h5 class="card-title">Flight Booking</h5>
+                    <p class="card-text">Explore various flight options tailored to your destination and schedule. Enjoy competitive prices and a seamless booking experience.</p>
+                    <form action="{{ url_for('routes.search') }}" method="POST">
+                        <input type="hidden" name="booking_type" value="Flight">
+                        <button type="submit" class="btn btn-custom">Book Now</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-card">
+                    <h5 class="card-title">Hotel Booking</h5>
+                    <p class="card-text">Discover the best hotels in your chosen destination. Compare prices, read reviews, and book your stay with ease.</p>
+                    <form action="{{ url_for('routes.search') }}" method="POST">
+                        <input type="hidden" name="booking_type" value="Hotel">
+                        <button type="submit" class="btn btn-custom">Book Now</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-card">
+                    <h5 class="card-title">Package Booking</h5>
+                    <p class="card-text">Combine flights and hotels into one convenient package. Save money and enjoy a hassle-free booking experience.</p>
+                    <form action="{{ url_for('routes.search') }}" method="POST">
+                        <input type="hidden" name="booking_type" value="PackageDeal">
+                        <button type="submit" class="btn btn-custom">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% if booking_type == 'Hotel' %}
+            <h3 class="section-subtitle">Search for Your Hotel</h3>
+        {% elif booking_type == 'Flight' %}
+            <h3 class="section-subtitle">Search for Your Flight</h3>
+        {% elif booking_type == 'PackageDeal' %}
+            <h3 class="section-subtitle">Search for Your Package Deal</h3>
+        {% endif %}
+
+        <!-- Search Form -->
+        <div class="search-form mt-4">
+            <form action="{{ url_for('routes.search') }}" method="POST">
+                <input type="hidden" name="booking_type" value="{{ booking_type }}">
+                
+                {% if booking_type == 'Hotel' %}
+                    <!-- Hotel Booking Fields -->
+                    <div class="form-group">
+                        <label for="destination">Destination:</label>
+                        <input type="text" class="form-control" id="destination" name="destination" required value="{{ destination or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="check_in">Check-in Date:</label>
+                        <input type="date" class="form-control" id="check_in" name="check_in" required value="{{ check_in or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="check_out">Check-out Date:</label>
+                        <input type="date" class="form-control" id="check_out" name="check_out" required value="{{ check_out or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests:</label>
+                        <input type="number" class="form-control" id="guests" name="guests" min="1" required value="{{ guests or 1 }}">
+                    </div>
+                {% elif booking_type == 'Flight' %}
+                    <!-- Flight Booking Fields -->
+                    <div class="form-group">
+                        <label for="departure_city">Departure City:</label>
+                        <input type="text" class="form-control" id="departure_city" name="departure_city" required value="{{ departure_city or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination:</label>
+                        <input type="text" class="form-control" id="destination" name="destination" required value="{{ destination or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="departure_date">Departure time:</label>
+                        <input type="date" class="form-control" id="departure_date" name="departure_time" required value="{{ departure_time or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="arrival_time">arrival time:</label>
+                        <input type="date" class="form-control" id="arrival_time" name="arrival_time" value="{{ arrival_time or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Passengers:</label>
+                        <input type="number" class="form-control" id="guests" name="guests" min="1" required value="{{ guests or 1 }}">
+                    </div>
+                {% elif booking_type == 'PackageDeal' %}
+                    <!-- Package Booking Fields -->
+                    <div class="form-group">
+                        <label for="destination">Destination:</label>
+                        <input type="text" class="form-control" id="destination" name="destination" required value="{{ destination or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="check_in">Check-In Date:</label>
+                        <input type="date" class="form-control" id="check_in" name="check_in" required value="{{ check_in or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="check_out">Check-Out Date:</label>
+                        <input type="date" class="form-control" id="check_out" name="check_out" required value="{{ check_out or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests:</label>
+                        <input type="number" class="form-control" id="guests" name="guests" min="1" required value="{{ guests or 1 }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="price_range">Price Range (min-max):</label>
+                        <input type="text" class="form-control" id="price_range" name="price_range" placeholder="e.g., 500-1500" value="{{ price_range or '' }}">
+                    </div>
+                {% endif %}
+                
+                <button type="submit" class="btn btn-success mt-3">Search</button>
+                <a href="{{ url_for('routes.search') }}" class="btn btn-secondary mt-3">Cancel</a>
+            </form>
+        </div>
+
+        <!-- Search Results Table -->
+        {% if results %}
+            <div class="mt-5">
+                <h3 class="section-title">Search Results</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            {% if booking_type == 'Flight' %}
+                                <th>Airline</th>
+                                <th>Flight No</th>
+                                <th>Destination</th>
+                                <th>Departure time</th>
+                                <th>Arrival time</th>
+                            {% elif booking_type == 'Hotel' %}
+                                <th>Hotel Name</th>
+                                <th>Location</th>
+                                <th>Check-In Date</th>
+                                <th>Check-Out Date</th>
+                            {% elif booking_type == 'PackageDeal' %}
+                                <th>Flight Airline</th>
+                                <th>Hotel Name</th>
+                                <th>Destination</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            {% endif %}
+                            <th>Price</th>
+                            <th>Availability</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                {% if booking_type == 'Flight' %}
+                                    <td>{{ result.airline }}</td>
+                                    <td>{{ result.flight_number }}</td>
+                                    <td>{{ result.destination }}</td>
+                                    <td>{{ result.departure_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td>{{ result.arrival_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                                {% elif booking_type == 'Hotel' %}
+                                    <td>{{ result.hotel_name }}</td>
+                                    <td>{{ result.hotel_location }}</td>
+                                    <td>{{ check_in or '' }}</td>
+                                    <td>{{ check_out or '' }}</td>
+                                {% elif booking_type == 'PackageDeal' %}
+                                    <td>{{ result.flight.airline }}</td>
+                                    <td>{{ result.hotel.hotel_name }}</td>
+                                    <td>{{ result.flight.destination }}</td>
+                                    <td>{{ result.start_date.strftime('%Y-%m-%d') }}</td>
+                                    <td>{{ result.end_date.strftime('%Y-%m-%d') }}</td>
+                                {% endif %}
+                                <td>
+                                    {{ currency }}
+                                    {{ "{:,.2f}".format(result.price) if result.price is not none else "0.00" }}
+                                </td>
+                                
+                                <td>
+                                    {% if booking_type == 'PackageDeal' %}
+                                        Flight Availability: {{ result.flight.availability }}<br>
+                                        Hotel Availability: {{ result.hotel.availability }}
+                                    {% else %}
+                                        {{ result.availability }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <form action="{{ url_for('routes.book', booking_type=booking_type, item_id=result.id) }}" method="POST">
+                                        <button type="submit" class="btn btn-primary">Book</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

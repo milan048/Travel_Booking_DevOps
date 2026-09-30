@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: travel-booking
+  namespace: travel-booking
+spec:
+  selector:
+    app: travel-booking
+  ports:
+    - port: 80
+      targetPort: 5000
+  type: NodePort

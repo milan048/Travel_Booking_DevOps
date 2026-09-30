@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Explore Horizons{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+<div class="profile-page">
+    <div class="profile-container mt-5">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <!-- Personal Info -->
+                <div class="profile-info p-4 bg-light shadow-sm rounded">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="font-weight-bold">Your Profile</h2>
+                        <a href="/edit-profile" class="btn btn-outline-primary">Edit Profile</a>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th scope="row"><i class="fas fa-user"></i> Full Name</th>
+                                <td>{{ user.name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="fas fa-envelope"></i> Email Address</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Navigation Buttons: Reservations and History -->
+                <div class="nav nav-pills mt-4" role="tablist">
+                    <a class="nav-link active" id="reservations-tab" data-toggle="pill" href="#reservations" role="tab" aria-controls="reservations" aria-selected="true">
+                        Reservations
+                    </a>
+                    <a class="nav-link" id="history-tab" data-toggle="pill" href="#history" role="tab" aria-controls="history" aria-selected="false">
+                        Canceled Bookings
+                    </a>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content mt-4">
+                    <!-- Reservations Tab -->
+                    <div class="tab-pane fade show active" id="reservations" role="tabpanel" aria-labelledby="reservations-tab">
+                        <div class="bookings p-4 bg-white shadow-sm rounded">
+                            <h4>Your Reservations</h4>
+                            <ul class="list-group">
+                                {% if bookings %}
+                                    {% for booking in bookings %}
+                                        {% if booking.is_confirmed %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <strong>Booking Type:</strong> 
+                                                {% if booking.service_type == 'flight' %}
+                                                    <span class="badge badge-primary">Flight</span>
+                                                {% elif booking.service_type == 'hotel' %}
+                                                    <span class="badge badge-warning">Hotel</span>
+                                                {% elif booking.service_type == 'package' %}
+                                                    <span class="badge badge-success">Package</span>
+                                                {% else %}
+                                                    <span class="badge badge-secondary">{{ booking.service_type.capitalize() }}</span>
+                                                {% endif %}
+                                                <br>
+                                                <strong>Destination:</strong> {{ booking.destination }}<br>
+                                                <strong>Date:</strong> {{ booking.booking_date.strftime('%B %d, %Y') }}<br>
+                                                <strong>Number of People:</strong> {{ booking.num_people }}<br>
+                                                <strong>Total Price:</strong> ₹{{ booking.total_price }}<br>
+                                                <!-- Status of Booking -->
+                                                <strong>Status:</strong> <span class="text-success"><i class="fas fa-check-circle"></i> Confirmed</span>
+                                            </div>
+
+                                            <!-- Action Buttons -->
+                                            <div class="action-buttons text-right">
+                                                <a href="{{ url_for('routes.update_booking', booking_id=booking.id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <form action="{{ url_for('routes.cancel_booking', booking_id=booking.id) }}" method="POST" style="display:inline;">
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm d-inline-block ml-2">Cancel</button>
+                                                </form>
+                                            </div>
+
+
+                                        </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <li class="list-group-item text-muted text-center">No Reservations yet.</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- History Tab (Canceled Bookings) -->
+                    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                        <div class="bookings p-4 bg-white shadow-sm rounded">
+                            <h4>Canceled Reservations</h4>
+                            <ul class="list-group">
+                                {% if bookings %}
+                                    {% for booking in bookings %}
+                                        {% if not booking.is_confirmed %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <strong>Booking Type:</strong> 
+                                                {% if booking.service_type == 'flight' %}
+                                                    <span class="badge badge-primary">Flight</span>
+                                                {% elif booking.service_type == 'hotel' %}
+                                                    <span class="badge badge-warning">Hotel</span>
+                                                {% elif booking.service_type == 'package' %}
+                                                    <span class="badge badge-success">Package</span>
+                                                {% else %}
+                                                    <span class="badge badge-secondary">{{ booking.service_type.capitalize() }}</span>
+                                                {% endif %}
+                                                <br>
+                                                <strong>Destination:</strong> {{ booking.destination }}<br>
+                                                <strong>Date:</strong> {{ booking.booking_date.strftime('%B %d, %Y') }}<br>
+                                                <strong>Number of People:</strong> {{ booking.num_people }}<br>
+                                                <strong>Total Price:</strong> ₹{{ booking.total_price }}<br>
+                                                <!-- Status of Booking -->
+                                                <strong>Status:</strong> <span class="text-danger"><i class="fas fa-times-circle"></i> Canceled</span>
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <li class="list-group-item text-muted text-center">No Canceled Reservations yet.</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Action Buttons -->
+                <div class="mt-4 d-flex justify-content-between">
+                    <a href="/edit-profile" class="btn btn-primary">Edit Profile</a>
+                    <a href="/logout" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add FontAwesome Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

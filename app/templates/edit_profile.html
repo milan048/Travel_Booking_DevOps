@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile - Explore Horizons{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='edit_profile.css') }}">
+<div class="edit-profile-page">
+    <div class="edit-profile-container mt-5">
+        <h2>Edit Your Profile</h2>
+
+        <!-- Display flashed messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('routes.edit_profile') }}">
+            {{ form.hidden_tag() }}  <!-- To include CSRF token -->
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                {{ form.name(class="form-control", id="name") }}  
+                {% if form.name.errors %}
+                    <div class="text-danger">
+                        {% for error in form.name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                {{ form.email(class="form-control", id="email") }}
+                {% if form.email.errors %}
+                    <div class="text-danger">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                {{ form.password(class="form-control", id="password") }}  
+                {% if form.password.errors %}
+                    <div class="text-danger">
+                        {% for error in form.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+            <a href="{{ url_for('routes.profile') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

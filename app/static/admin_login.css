@@ -1,0 +1,89 @@
+/* Gradient Background for the Page */
+body {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    min-height: 100vh; /* Full height of the viewport */
+    background: linear-gradient(to right, #74f778, #78ebbf);
+    color: #ffffff; /* White text for contrast */
+}
+
+/* Header Styling */
+header {
+    padding: 20px; /* Space inside the header */
+}
+
+/* Card Styling */
+.card {
+    flex: 1; /* Allow the card to grow and fill available space */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for card */
+    border-radius: 16px; /* Rounded corners */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Deeper shadow for depth */
+    transition: transform 0.3s; /* Smooth hover effect */
+    margin: 30px 30px; /* Increased space above and below the card */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Form Elements */
+.form-control {
+    border-radius: 10px; /* Slightly increased rounding */
+    border: 1px solid #bdc3c7; /* Softer border color */
+    padding: 15px; /* Increased padding for comfort */
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.form-control:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5); /* Enhanced focus shadow */
+}
+
+.form-label {
+    font-weight: 500;
+    color: #34495e; /* Darker label color */
+}
+
+/* Change Admin Login Text Color */
+.card h2 {
+    color: black; /* Black color for the heading */
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #4CAF50;
+    border: none;
+    padding: 14px; /* Increased padding for a larger button */
+    border-radius: 10px; /* Rounded edges */
+    font-size: 18px;
+    font-weight: 600; /* Bolder button text */
+    width: 100%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.btn-primary:active {
+    background-color: #388E3C; /* Even darker on active */
+    transform: translateY(0);
+}
+
+/* Flash Message Styling */
+.alert-danger {
+    background-color: #e74c3c; /* Red color for alerts */
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); /* Soft shadow for alerts */
+}
+
+/* Footer Styling */
+footer {
+    margin-top: auto; /* Push the footer to the bottom */
+    padding: 20px; /* Space inside the footer */
+}
